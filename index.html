@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Julies Tjekkede Portfolio</title>
+  <link rel="shortcut icon" type="image/svg" href="images/favicon/logo.svg"/>
+  
+  <style>
+    
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Special+Gothic+Expanded+One&display=swap');
+   
+   /* Grundlæggende styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding: 10rem;
+    }
+
+    body {
+      font-family: "Special Gothic Expanded One", sans-serif;
+      line-height: 1.6;
+      background:  url(images/hero/background_body.svg), linear-gradient(to bottom, #72DDF7, #06BEE1);
+      cursor: url(images/mousecursor/mouse32x32.png) 0 0, auto;
+      background-size: cover, contain;   /* gradient covers, SVG scales nicely */
+      background-position: center, center; /* both centered */
+      background-repeat: no-repeat, no-repeat;
+    }
+
+    img, video {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 1rem;
+    }
+
+    video {
+       cursor: url('images/mousecursor/hand32x32.png') 0 0, pointer;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      font-family: "Special Gothic Expanded One", sans-serif;
+      cursor: url('images/mousecursor/hand32x32.png') 0 0, pointer;
+    }
+
+    button {
+      font-family: "Special Gothic Expanded One", sans-serif;
+      cursor: url('images/mousecursor/hand32x32.png') 0 0, pointer;
+    }
+
+    .logo {
+      width: 10rem;
+      transition: 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+      cursor: url('images/mousecursor/hand32x32.png') 0 0, pointer;
+      filter: invert(1);
+    }
+    
+    h1 {
+      color: #fff;
+      padding: 0.5rem;
+      font-size: 2rem;
+    }
+
+    h2 {
+    font-family: "Special Gothic Expanded One", sans-serif;
+    text-transform: uppercase;
+    font-weight: bolder;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #fff;
+    }
+
+    h3 {
+      font-family: "Special Gothic Expanded One", sans-serif;
+      text-transform: uppercase;
+      color: #216B7c;
+    }
+
+    p {
+      font-family: "Raleway", sans-serif;
+    }
+
+/* START effekt som får h2-elementer til at køre hen over skærmen */
+
+.marquee-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 1rem;
+  margin-top: 4rem;
+  padding-top: 4rem;
+  padding-bottom: 1rem;
+}
+
+.marquee-content {
+  display: flex;
+  white-space: nowrap;
+  will-change: transform;
+  animation: scroll-marquee 25s ease-in-out infinite alternate;
+}
+
+.marquee-content span {
+  display: inline-block;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  font-weight: bold;
+  color: #fff;
+  font-size: 30px;
+  background-color: #7B5E7B;
+}
+
+@keyframes scroll-marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+  /* SLUT effekt som får span-elementer til at køre hen over skærmen */
+
+    
+    /* Navigation */
+    nav {
+      width: 100%;
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-transform: uppercase;
+      font-weight: 900;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 2rem;
+      padding: 1rem;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      background-color: #ffffff60;
+      backdrop-filter: blur(10px);
+      border-radius: 2rem;
+      padding: 1rem;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .nav-links li {
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+
+    .nav-links li a {
+      padding: 0.5rem;
+      transition: background 0.5s;
+      border-radius: 2rem;
+      padding-left: 0.8rem;
+      padding-right: 0.8rem;
+    }
+
+    .nav-links li a:hover {
+      background: #06BEE1;
+      border-radius: 2rem;
+      font-family: "Special Gothic Expanded One", sans-serif;
+      font-weight: 900;
+      font-style: italic;
+    }
+
+/* Burger-menu styling til mobil */
+.burger-menu {
+  display: none;
+  flex-direction: column;
+  cursor: url('images/mousecursor/hand32x32.png') 0 0, pointer;
+  z-index: 1000;
+  width: 2rem;
+  height: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.burger-menu span {
+  height: 0.3rem;
+  width: 2.5rem;
+  background: #fff;
+  margin: 0.3rem 0;
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+}
+
+/* Animate into "X" when active */
+.burger-menu.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+.burger-menu.active span:nth-child(2) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+
+    /* Hero-banner sektion */
+.hero {
+  font-weight: bolder;
+  display: flex;
+  align-items: center;
+  /* first layer = SVG, second layer = Gradient */
+  background: 
+  url(images/hero/background_hero.svg),linear-gradient(to bottom, #F7AEF8, #F7AEF8);
+  background-size: cover, contain;   /* gradient covers, SVG scales nicely */
+  background-position: center, center; /* both centered */
+  background-repeat: no-repeat, no-repeat;
+  border-radius: 3rem;
+  margin: 2rem;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+  overflow: hidden; /* keeps SVG inside rounded corners */
+}
+
+
+    .hero h2{
+      color: #fff;
+      text-align: left;
+    }
+
+    .hero-left, .hero-right {
+      flex: 1;
+      padding: 1rem;
+    }
+
+    .hero-left {
+     display: flex;
+     justify-content: center; /* Centrerer billedet vandret */
+     align-items: center; /* Centrerer billedet lodret, hvis nødvendigt */
+     flex: 1;
+     padding: 1rem;
+    }
+
+    .hero img {
+      width: 12rem;
+      border-radius: 10rem;
+    }
+
+    .hero-button {
+    margin: 2rem auto;
+    padding: 0.75rem 2rem;
+    color: #fff;
+    font-size: 1rem;
+    background: linear-gradient(to bottom, #FDC5F5, #FDC5F5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: url('images/mousecursor/hand32x32.png') 0 0, pointer;
+    width: auto;
+    text-decoration: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .hero-button:hover {
+    background: linear-gradient(to bottom, #F7AEF8, #F7AEF8);
+    color: #06BEE1;
+    }
+
+
+
+
+ /* skills sektion */  
+.skills {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 90rem;
+  margin: 0 auto;        /* centrer hele sektionen */
+  padding: 0 1rem;       /* luft i siderne på små skærme */
+  box-sizing: border-box;
+}
+
+.skills h2 {
+  grid-column: 1 / -1;   /* strækker over begge kolonner */
+  text-align: center;    /* centrer teksten horisontalt */
+}
+
+
+/* første sektion med software og programmer */
+.skills-thumbnails-wrapper {
+  grid-column: 1 / -1;
+}
+
+.skills-thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.thumb-box {
+  position: relative; /* needed for tooltip positioning */
+  aspect-ratio: 1 / 1;
+  background-color: #f0f0f0; 
+  border-radius: 5rem;
+  overflow: visible; /* allow tooltip to show outside */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: invert(0%);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.thumb-box:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  cursor: url('images/mousecursor/hand32x32.png') 0 0, pointer;
+  filter: invert(1);
+  z-index: 9999; /* raise above other icons on hover */
+}
+
+/* Tooltip element (pseudo-element) */
+.thumb-box::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: -2.5rem; /* distance below circle */
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.4rem;
+  white-space: nowrap;
+  opacity: 0;
+  z-index: 10000;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* Small arrow under circle */
+.thumb-box::before {
+  content: "";
+  position: absolute;
+  bottom: -0.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0.4rem;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+  opacity: 0;
+  z-index: 10000;
+  transition: opacity 0.2s ease;
+}
+
+/* Show tooltip on hover */
+.thumb-box:hover::after,
+.thumb-box:hover::before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.thumb-box img {
+  max-width: 60%;
+  max-height: 60%;
+  object-fit: contain;
+  border-radius: 0;
+}
+
+
+/* 4 bokse med beskrivelser om mine kompetencer */
+
+.skill-box {
+  background-color: #f5f5f5;
+  background: linear-gradient(to bottom, #fff, #eaeaea);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.skill-icon {
+  width: 2rem;
+  height: 2rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0;
+}
+
+.skill-box h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.skill-box p {
+  font-size: 1rem;
+  color: #444;
+  font-weight: 500;
+}
+
+.skill-box:hover {
+  transform: translateY(-5px);
+}
+
+/* knap med link til om mig-sektion */
+
+.skills-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-column: 1 / -1;  /* Spænd over hele grid'en */
+  justify-self: center;  /* Eller brug margin auto */
+  margin: 2rem auto;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  color: #f5f5f5;
+  background: linear-gradient(to bottom, #ff6f00, #ff8c00);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: url('images/mousecursor/hand32x32.png') 0 0, pointer;
+  width: auto;
+  text-decoration: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.skills-button:hover {
+  transform: skew(3deg, 5deg);
+  background: linear-gradient(to bottom, #ff6f00, #ff8c00);
+  color: #216B7c;
+}
+
+    /* Projekter sektion */
+
+    .projects-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: 90rem;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .project-item {
+      background: linear-gradient(to bottom, #fff, #eaeaea);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      cursor: url('images/mousecursor/hand32x32.png') 0 0, pointer;
+      transition: transform 0.3s;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .project-item img {
+      border-radius: 0.5rem;
+    }
+
+    .project-item h3 {
+      margin-top: 1rem;
+      text-transform: uppercase;
+    }
+
+    .project-item h4 {
+      font-family: "Raleway", sans-serif;
+      font-weight: 500;
+    }
+
+    .project-item p {
+      font-family: "Raleway", sans-serif;
+      margin-top: 1rem;
+      display: inline-block;
+      border: 0.01rem solid #777;
+      border-radius: 0.3rem;
+      padding: 0.4rem;
+      font-size: 0.5rem;
+    }
+
+    .project-item:hover {
+      background: linear-gradient(to bottom, #ff6f00, #ff8c00);
+      transform: skew(1deg, 1deg);
+      font-family: "Special Gothic Expanded One", sans-serif;
+      font-weight: 900;
+      font-style: italic;
+      color: #fff;
+    }
+
+    /* Modal styling */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      background-color: rgba(0,0,0,0.7);
+      padding: 2rem;
+      text-align: center;
+    }
+    .modal-content {
+      background: linear-gradient(to bottom, #fff, #eaeaea);
+      margin: 2rem auto;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      max-width: 70rem;
+      position: relative;
+      text-align: center;
+    }
+
+    .modal-content h2 {
+      text-align: left;
+      padding-left: 2rem;
+      font-size: 30px;
+      color: #216B7c;
+    }
+
+    .modal-content h3 {
+      text-align: left;
+      padding-left: 2rem;
+    }
+
+    .modal-body {
+      overflow-y: auto;
+      max-height: 80rem;
+      background: #fff;
+      border-radius: 0.5rem;
+    }
+
+    .modal-body img {
+      padding: 1rem;
+      border-radius: 2rem;
+      width: 95%;
+      display: block;
+        margin-left: auto;
+        margin-right: auto;
+    } 
+
+    .modal-body video {
+      padding: 1rem;
+      border-radius: 1.5rem;
+      width: 75%;
+      display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .modal-body p {
+      color: #333;
+      text-align: left;
+      padding-left: 2rem;
+      padding-right: 2rem;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+      font-family: "Raleway", sans-serif;
+      font-weight: 500;
+    }
+
+      .modal-body ul {
+      color: #333;
+      list-style-type: square;
+      text-align: left;
+      padding-left: 2rem;
+      padding-right: 2rem;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      font-family: "Raleway", sans-serif;
+      font-weight: 500;
+    }
+
+    .modal-body a {
+      color: #ff8c00;
+      font-weight: bolder;
+      font-family: "Railway", sans-serif;
+            cursor: url('images/mousecursor/hand32x32.png') 0 0, pointer;
+    }
+
+    .close {
+      position: absolute;
+      top: -0.5rem;
+      right: 1rem;
+      font-size: 3rem;
+      cursor: url('images/mousecursor/hand32x32.png') 0 0, pointer;
+      color: #ff0000;
+    }
+
+/* Om mig sektion */
+.ommig {
+  text-align: center;
+  max-width: 95rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.about-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.about-text, .about-image {
+  font-family: "Raleway", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  flex: 1;
+  padding-right: 4rem;
+  padding-left: 4rem;
+  text-align: left;
+  color: #fff;
+}
+
+.about-image img {
+  margin-top: 7rem;
+  width: 75%;
+}
+
+.about-text h2 {
+  font-size: 1.5rem;
+}
+
+.about-text p {
+  background-color: #eaeaea60;
+  backdrop-filter: blur(10px);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+    /* Footer sektion */
+    footer.footer {
+      color: #fff;
+      text-align: center;
+    }
+
+    .footer h2 {
+      color: #fff;
+      font-size: 1.5rem;
+    }
+
+    .footer-images {
+    display: flex; /* Skift fra grid til flex */
+    justify-content: center; /* Centrerer ikonerne horisontalt */
+    align-items: center; /* Centrerer dem vertikalt */
+    gap: 1rem; /* Giver lidt mere afstand mellem ikonerne */
+    padding: 1rem;
+    }
+
+    .footer-col img {
+      border-radius: 8px;
+      width: 8rem;
+      height: 8rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Tilføjer en smooth transition */
+    }
+
+    .footer-col {
+    position: relative;
+  }
+
+    .tooltip-text {
+    position: absolute;
+    bottom: 8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ff8c00;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    white-space: nowrap;
+    border-radius: 0.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease;
+    pointer-events: none;
+    z-index: 10;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .footer-col:hover .tooltip-text {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(10%) skewX(10deg) rotate(-47deg);
+  }
+
+
+    .footer-col img:hover {
+    transform: rotateX(25deg); /* Gør ikonet lidt større ved hover */
+    cursor: url('images/mousecursor/hand32x32.png') 0 0, pointer;
+    }
+
+    .footer-text {
+      font-family: "Raleway", sans-serif;
+      font-weight: 500;
+    }
+
+
+/* Responsivt design mobil */
+@media (max-width: 768px) {
+/* Nav-bar: vis burger-menu og skjul standard links */
+
+/* Override nav bar layout on mobile */
+nav {
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0.1rem;
+}
+
+.logo {
+  padding: 1rem;
+}
+
+/* Mobile nav panel hidden by default */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(to bottom, #cf82f3, #bf55f0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-100%);
+    transition: transform 0.4s ease-in-out;
+    z-index: 999;
+    border-radius: 0;
+  }
+
+  .nav-links.active {
+    transform: translateY(0);
+  }
+
+  .nav-links li {
+    margin: 1.5rem 0;
+    font-size: 1.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+  }
+
+  .nav-links.active li {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* links fader ind */
+.nav-links.active li:nth-child(1) { transition-delay: 0.3s; }
+.nav-links.active li:nth-child(2) { transition-delay: 0.4s; }
+.nav-links.active li:nth-child(3) { transition-delay: 0.5s; }
+.nav-links.active li:nth-child(4) { transition-delay: 0.6s; }
+.nav-links.active li:nth-child(5) { transition-delay: 0.7s; }
+
+  .burger-menu {
+    display: flex;
+    margin: 2rem;
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+
+      /* Hero sektion: stak kolonner vertikalt */
+      .hero {
+        flex-direction: column;
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+      }
+
+      .hero h1 {
+        text-align: center;
+        font-size: 1.2rem;
+        padding: 0;
+      }
+
+    .hero button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+      
+ /* skills sektion: én kolonne */
+
+  .skills{
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 1.5rem;
+    justify-items: center;       /* center all children */
+  }
+
+  /* prevent grid children from widening the layout */
+  .skills > *{ min-width: 0; }
+
+  /* make the long title wrap + scale on tiny screens */
+  .skills h2{
+    max-width: 100%;
+    overflow-wrap: anywhere;      /* allow breaks anywhere */
+    word-break: break-word;
+    hyphens: auto;
+    text-align: center;
+    font-size: clamp(1.25rem, 8vw, 2rem);
+    line-height: 1.1;
+  }
+
+  /* icon row stays centered and contained */
+  .skills-thumbnails{
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* optional: slightly smaller bubbles for very narrow widths */
+  @media (max-width: 420px){
+    .thumb-box{ width: 4rem; height: 4rem; }
+  }
+
+  /* center each card and CTA */
+  .skill-box{
+    width: 100%;
+    max-width: 42rem;
+    text-align: center;
+  }
+  .skill-icon{
+    display: block;
+    margin: 0 auto .5rem;
+  }
+  .skills-button{
+    justify-self: center;
+    width: max-content;
+    margin: 2rem auto 0;
+  }
+
+
+      /* Projekter sektion: én kolonne */
+      .projects-container {
+        grid-template-columns: 1fr;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        gap: 1.5rem;
+      }
+
+      /* Om mig: tekst først, billede under */
+      .about-container {
+        flex-direction: column;
+        text-align: left;
+      }
+      
+    .about-text, .about-image {
+      flex: 1;
+      padding-right: 1.5rem;
+      padding-left: 1.5rem;
+      text-align: left;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #fff;
+    }
+
+      .footer-images {
+        display: flex;
+        flex-direction: column; /* Stak ikonerne vertikalt */
+        align-items: center; /* Centrerer ikonerne horisontalt */
+        gap: 1rem; /* Tilføjer afstand mellem ikonerne */
+    }
+
+    /* billede af mig */
+        .footer-text img {
+      width: 20%;
+      display: block;
+      margin: auto;
+      margin-top: 2.5rem;
+      transition: transform 0.3s ease; /* This enables smooth scaling */
+    }
+    }
+        
+  </style>
+
+
+</head>
+<body>
+  <!-- Navigation med sticky og burger-menu -->
+  <nav id="navbar">
+    <div class="logo">
+     <a href="#hero">
+        <img src="images/logoer/logo.png" alt="Jonas Albjerg logo" />
+      </a>
+    </div>
+    <!-- Burger-menu til mobil -->
+    <div class="burger-menu" id="burger-menu">
+      <span></span>
+      <span></span>
+    </div>
+    <ul class="nav-links" id="nav-links">
+      <!-- <li><a href="#skills">Skills</a></li> -->
+      <li><a href="#projekter">Projekter</a></li>
+      <li><a href="#ommig">Om mig</a></li>
+      <li><a href="#footer">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero-banner sektion med to kolonner -->
+  <section id="hero" class="hero">
+    <div class="hero-left">
+      <!-- Udskift src med det ønskede billede -->
+      <img src="images/hero/2.png" alt="Hero billede" class="rotate-scale" loading="eager" fetchpriority="high">
+    </div>
+    <div class="hero-right">
+      <h1>DATA. DUM. DEJLIG.<br> Velkommen til Julies dataverse</h1>
+      <button class="hero-button" onclick="location.href='#projekter'">Vil du se?</button>
+    </div>
+  </section>
+
+
+
+
+<!-- skills sektion med kompetencer
+<div class="marquee-wrapper">
+  <div class="marquee-content">
+    <span>SKILLS / SKILLS / SKILLS / SKILLS / SKILLS / SKILLS / SKILLS / SKILLS / SKILLS / SKILLS / SKILLS / SKILLS / SKILLS / SKILLS / SKILLS / SKILLS / SKILLS / SKILLS /</span>
+    <span>SKILLS / SKILLS / SKILLS / SKILLS / SKILLS / SKILLS / SKILLS / SKILLS / SKILLS / SKILLS / SKILLS / SKILLS / SKILLS / SKILLS / SKILLS / SKILLS / SKILLS / SKILLS /</span>
+  </div>
+</div>
+
+
+<section id="skills" class="skills">
+
+    <h2>Værktøjskassen.</h2>
+
+  <div class="skills-thumbnails-wrapper">
+    <div class="skills-thumbnails">
+      <div class="thumb-box" data-tooltip="Photoshop"><img src="images/skills/programmer/adobe-photoshop.svg" alt="Photoshop"></div>
+      <div class="thumb-box" data-tooltip="Premiere Pro"><img src="images/skills/programmer/adobe-premiere.svg" alt="Premiere Pro"></div>
+      <div class="thumb-box" data-tooltip="Illustrator"><img src="images/skills/programmer/adobe-illustrator.svg" alt="Illustrator"></div>
+      <div class="thumb-box" data-tooltip="InDesign"><img src="images/skills/programmer/adobe-indesign.svg" alt="InDesign"></div>
+      <div class="thumb-box" data-tooltip="Adobe XD"><img src="images/skills/programmer/adobe-xd.svg" alt="Adobe XD"></div>
+      <div class="thumb-box" data-tooltip="ChatGPT"><img src="images/skills/programmer/openai.svg" alt="ChatGPT"></div>
+      <div class="thumb-box" data-tooltip="HTML5"><img src="images/skills/programmer/html-5.svg" alt="HTML5"></div>
+      <div class="thumb-box" data-tooltip="CSS"><img src="images/skills/programmer/css-3.svg" alt="CSS"></div>
+      <div class="thumb-box" data-tooltip="LinkedIn"><img src="images/skills/programmer/linkedin.svg" alt="LinkedIn"></div>
+      <div class="thumb-box" data-tooltip="Meta Ads"><img src="images/skills/programmer/meta.svg" alt="Meta Ads"></div>
+      <div class="thumb-box" data-tooltip="WordPress"><img src="images/skills/programmer/wordpress.svg" alt="WordPress"></div>
+      <div class="thumb-box"data-tooltip="Magento"><img src="images/skills/programmer/magento.svg" alt="Magento"></div>
+      <div class="thumb-box" data-tooltip="ActiveCampaign"><img src="images/skills/programmer/activecampaign.svg" alt="ActiveCampaign"></div>
+      <div class="thumb-box" data-tooltip="Klaviyo"><img src="images/skills/programmer/Klaviyo.svg" alt="Klaviyo"></div>
+      <div class="thumb-box" data-tooltip="Mailchimp"><img src="images/skills/programmer/mailchimp.svg" alt="Mailchimp"></div>
+   
+    </div>
+  </div> 
+  
+
+  <div class="skill-box">
+    <img src="images/skills/ikoner/Content Creation & Visuel Kommunikation ikon.svg" alt="Content creation og visuel kommunikation" class="skill-icon">
+    <h3>Content Creation & Visuel Kommunikation</h3>
+    <p>Photoshop, Premiere Pro, Illustrator - indsæt selv flere. Jeg har et godt øje for videoproduktion og motion graphics. Mangler du stillestående grafik eller fotos fikser jeg også det for dig.</p>
+  </div>
+
+  <div class="skill-box">
+    <img src="images/skills/ikoner/AI & Automatisering.svg" alt="AI og automatisering" class="skill-icon">
+    <h3>AI & Automatisering</h3>
+    <p>ChatGPT, Power Automate, n8n - om man vil det eller ej, så skal man følge med når det kommer til AI. Derfor gør jeg mit for at effektivisere arbejdsgange og skabe nye muligheder.</p>
+  </div>
+
+  <div class="skill-box">
+    <img src="images/skills/ikoner/Digital Projektledelse ikon.svg" alt="Digital projektledelse" class="skill-icon">
+    <h3>Digital Projektledelse</h3>
+    <p>Jeg styrer digitale projekter fra idé til eksekvering - med fokus på struktur, UX, og velovervejde valg.</p>
+  </div>
+
+  <div class="skill-box">
+    <img src="images/skills/ikoner/Undervisning & Formidling.svg" alt="Undervisning og formidling" class="skill-icon">
+    <h3>Undervisning & Formidling</h3>
+    <p>Med en uddannelsesbaggrund i IT og kommunikation, kan jeg formidle IT og teknik på en enkel måde - naturligvis tilpasset dig, din mormor eller hund.</p>
+  </div>
+
+
+  <button class="skills-button" onclick="location.href='#ommig'">Læs mere om mig</button> -->
+
+    
+</section>
+
+    <div class="marquee-wrapper">
+      <div class="marquee-content">
+        <span>PROJEKTER / PROJEKTER / PROJEKTER / PROJEKTER / PROJEKTER / PROJEKTER / PROJEKTER / PROJEKTER / PROJEKTER / PROJEKTER / PROJEKTER / PROJEKTER / PROJEKTER / PROJEKTER / PROJEKTER</span>
+        <span>PROJEKTER / PROJEKTER / PROJEKTER / PROJEKTER / PROJEKTER / PROJEKTER / PROJEKTER / PROJEKTER / PROJEKTER / PROJEKTER / PROJEKTER / PROJEKTER / PROJEKTER / PROJEKTER / PROJEKTER</span>
+      </div>
+    </div>
+    </div>
+
+  <!-- Projekt-sektion med modalvinduer -->
+  <section id="projekter" class="projekter">
+
+    <div class="projects-container">
+
+    <!-- Hvert projekt er klikbart og åbner et modalvindue -->
+
+      <!-- Projekt 12 -->
+      <div class="project-item" data-modal="modal12">
+        <img src="images/projekt12/thumbnail.jpg" alt="Kandidatspeciale" title="Går short-form-videoer hånd i hånd med træningscontent?">
+        <h3>Kandidatspeciale</h3>
+        <h4>Anvendelsen af korte fitnessinstruktionsvideoer på sociale medier.</h4>
+        <p>UX</p>
+        <p>Grafisk design</p>
+        <p>Video</p>
+        <p>Sociale medier</p>
+      </div>
+
+      <!-- Projekt 23 -->
+      <div class="project-item" data-modal="modal23">
+        <img src="images/projekt23/thumbnail.jpg" alt="Grafisk materiale til lipLid" title="liplid er den ny standard til to-go koppen.">
+        <h3>LIPLID</h3>
+        <h4>Liplid er et nyt miljøvenligt låg til to go-kaffe og sodavandsbægre.</h4>
+        <p>Video</p>
+        <p>Motion Graphics</p>
+        <p>Print</p>
+        <p>Grafisk design</p>
+        <p>Webudvikling</p>
+      </div>
+
+      <!-- Projekt 33 -->
+      <div class="project-item" data-modal="modal33">
+        <img src="images/projekt33/thumbnail.jpg" alt="HECHT:RIGAS" title="Nyt website til HECHT:RIGAS">
+        <h3>Hecht:Rigas Advokatanparkselskab</h3>
+        <h4>Udvikling af nyt website til HECHT:RIGAS.</h4>
+        <p>UX</p>
+        <p>Webudvikling</p>
+      </div>  
+
+    </div>
+  </section>
+
+  <!-- Modalvinduer for hvert projekt - indhold -->
+
+  <!-- Projekt 12 -->
+  <div class="modal" id="modal12">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Kandidat-speciale</h2>
+      <div class="modal-body">
+        <p>Med en personlig interesse for fitness og sociale medier, valgte jeg at undersøge hvordan instruktionsvideoer på SoMe-platforme egentlig anvendes i praksis.</p>
+        <img src="images/projekt12/3.jpg" alt="Short form videoer på TikTok, Instagram, Facebook og YouTube">
+        <p>I specialet undersøger jeg dels UI på tværs af Facebook, Instagram, TikTok og YouTube, for at forstå hvordan platformene er sat op - overraskende minder alle platforme visuelt om hinanden - men for at interagere med interfacet, skal der forskellige handlinger til.</p>
+        <img src="images/projekt12/1.jpg" alt="Brugerinteraktion med platformene">
+        <p>Udover UI, har jeg testet platformene og udvalgte videoinstruktioner på 4 forsøgspersoner, for at observere hvordan videoindholdet anvendes direkte, og om der opstår begrænsninger i interaktionen mellem bruger, video og platform.</p>
+        <p>Problematikken valgte jeg at døbe start-og-stop-processen. Processen definerer brugerens skiften mellem at se videoinstruktioner, og selv prøve at udføre øvelserne fra videoerne. Men grundet det korte videoformat og få detaljer, er brugerne løbende nødt til at skfite frem og tilbage for at få fuld forståelse for øvelserne.</p>
+        <img src="images/projekt12/2.jpg" alt="Figur der viser hvordan brugeren skal rundt om instruktøren, for at få det fulde billede af en øvelse">
+        <p>Gennem dialog med forsøgspersonerne og analyse af videooptagelserne, kom jeg frem til en række løsningsforslag.</p>
+        <p>Den første løsning implementerer VR. Ved hjælp af VR-briller vil brugeren have mulighed for at se videoinstruktioner, mens der samtidig kan udføres øvelser.</p>
+        <img src="images/projekt12/4.jpg" alt="Oculus VR-briller">
+        <p>Brugen af VR løser også et problem som flere brugere rapportede; muligheden for at se instruktørerne bedre. Med VR kan brugeren navigere rundt om instruktøren og se hvordan øvelser udføres. Dog kræver det at videoskaberen bag instruktionsvideoen, har VR-udstyr til rådighed.</p>
+        <p>Programmer anvendt: Photoshop, Illustrator, Premiere Pro.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Projekt 23 -->
+  <div class="modal" id="modal23">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>LIPLID</h2>
+      <div class="modal-body">
+        <p>Med en værdiansættelse på 100 mio. kr., er liplid kaffelåg til to-go kopper og andre engangskopper.</p>
+        <video controls>
+          <source src="images/projekt23/7.mp4" type="video/mp4" alt="Explainervideo">
+        </video>
+        <video controls>
+          <source src="images/projekt23/1.mp4" type="video/mp4" alt="Stemningsvideo">
+        </video>
+        <p>Jeg har på egen hånd opbygget en masse grafik og videomateriale, til at brande og fremvise liplid på det danske marked.</p>
+        <video controls>
+          <source src="images/projekt23/2.mp4" type="video/mp4" alt="Med på farten">
+        </video>
+        <video controls>
+          <source src="images/projekt23/8.mp4" type="video/mp4" alt="SoMe-opslag - udpakning af første sending Liplid-låg">
+        </video>
+        <p>Jeg har produceret videomateriale til brug på SoMe-kanaler, samt infokataloger, visitkort, plakater m.m., som konsulenter har haft med i marken.</p>
+        <p>Se f.eks. nogle af opslagene <a href="https://www.facebook.com/share/v/16BoYvEJpW/" target="_blank">her</a> eller <a href="https://www.linkedin.com/posts/b-company_hvert-%C3%A5r-produceres-mere-end-300-mia-plastik-activity-7192077951868252161-tokN?utm_source=share&utm_medium=member_desktop&rcm=ACoAACs1JMoBIsJC-LW-rkQl9dYrkRWvj98CVZw" target="_blank">her.</a></p>
+        <img src="images/projekt23/3.jpg" alt="Brochure">
+        <img src="images/projekt23/4.jpg" alt="Visitkort">
+        <p>Udover grafik og video, har jeg også opsat en <a href="https://bcompany.dk/liplid" target="_blank">landingsside</a>, som informerer om låget, unique selling points, ofte stillede spørgsmål og video guides.</p>
+        <p>Både SEO og den synlige del af landingssiden er opsat i Magento Pagebuilder.</p>
+        <img src="images/projekt23/5.jpg" alt="Landingsside - desktop">
+        <img src="images/projekt23/6.jpg" alt="Landingsside - mobil">
+        <p>Forud for produktionen har jeg researchet artikler om konceptet, samt studeret hvordan liplid selv brander sig.</p>
+        <p>Programmer anvendt: Photoshop, Premiere Pro, InDesign, Magento Pagebuilder.</p>
+      </div>
+    </div>
+  </div>
+
+<!-- Projekt 33 -->
+      <div class="modal" id="modal33">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Hecht:Rigas - Nyt website</h2>
+          <div class="modal-body">
+            <p>I sommeren 2025 designede og opsatte jeg en ny hjemmeside for advokatfirmaet Hecht:Rigas. Projektet blev udført i tæt dialog med kunden, hvor jeg bidrog med rådgivning om både struktur, layout og det visuelle udtryk.</p>
+            <video controls>
+              <source src="images/projekt33/1.mp4" type="video/mp4" alt="Hecht:Rigas - startside">
+            </video>
+            <h3>Mit arbejde omfattede bl.a.:</h3>
+            <ul>
+              <li>Sparring med kunden om design og brugeroplevelse.</li>
+              <li>Justering af logo og farvevalg for at skabe et mere stramt og professionelt udtryk.</li>
+              <li>Implementering af et skarpt, kantet design - uden afrundede hjørner - for at understøtte firmaets seriøse profil.</li>
+              <li>Opsætning af forside med video-hero sektion.</li>
+              <li>Strukturering og design af sider for specialer, blogindlæg og privatlivspolitikker.</li>
+              <li>Udvælgelse og opsætning af billeder og videoindhold.</li>
+              <li>SEO-konfiguration via Yoast SEO inkl. meta-beskrivelser og titler.</li>
+            </ul>
+            <img src="images/projekt33/2.jpg" alt="Sektion der forklarer om virksomhedens grundlag">
+            <img src="images/projekt33/3.jpg" alt="Udvalgte sider på mobil">
+            <img src="images/projekt33/4.gif" alt="Proces i skatteret">
+            <img src="images/projekt33/5.jpg" alt="Et af specialernes landingsside">
+            <p><strong>Min rolle: </strong>Webdesign, opsætning, samt visuel rådgivning og sparring.</p>
+            <p><strong>Varighed: </strong>ca. 2 måneder</p>
+            <p><strong>Programmer anvendt: </strong>WordPress, Elementor, Yoast SEO-plugin, Photoshop, Canva.</p>
+            <p>Se websitet <a href="https://hecht-rigas.dk" target="_blank" rel="noopener noreferrer">her.</a></p>
+          </div>
+        </div>
+      </div>
+
+  
+
+  <div class="marquee-wrapper">
+    <div class="marquee-content">
+      <span>OM MIG / OM MIG / OM MIG / OM MIG / OM MIG / OM MIG / OM MIG / OM MIG / OM MIG / OM MIG / OM MIG / OM MIG / OM MIG / OM MIG / OM MIG</span>
+      <span>OM MIG / OM MIG / OM MIG / OM MIG / OM MIG / OM MIG / OM MIG / OM MIG / OM MIG / OM MIG / OM MIG / OM MIG / OM MIG / OM MIG / OM MIG</span>
+    </div>
+  </div>
+
+  <!-- Om mig sektion med to kolonner -->
+  <section id="ommig" class="ommig">
+
+    <div class="about-container">
+      <div class="about-text">
+        <h2>Stud.scient i Data Science</h2>
+        <p>Jeg har netop færdiggjort min bachelor i Folkesundhedsvidenskab ved Syddansk Universitet. <br><br>Sideløbende med mit studie arbejder jeg som studentermedhjælper ved Innovation, Forskning og MTV på Odense Universitetshospital (OUH), hvor jeg er med til at understøtte PRO-arbejdet.<br><br> Jeg er også grøn pigespejder, og i de sidste mange år har jeg haft forskellige virker: jeg har indgået i regionsledelsen samt den "daglige" drift af de ugentlige spejdermøder i en lokal gruppe. </p>
+      </div>
+      <div class="about-image">
+        <img src="images/om mig/ommig_julie.JPG" alt="Billede af mig">
+      </div>
+    </div>
+  </section>
+
+
+  <div class="marquee-wrapper">
+    <div class="marquee-content">
+      <span>KONTAKT / KONTAKT / KONTAKT / KONTAKT / KONTAKT / KONTAKT / KONTAKT / KONTAKT / KONTAKT / KONTAKT / KONTAKT / KONTAKT / KONTAKT / KONTAKT / KONTAKT</span>
+      <span>KONTAKT / KONTAKT / KONTAKT / KONTAKT / KONTAKT / KONTAKT / KONTAKT / KONTAKT / KONTAKT / KONTAKT / KONTAKT / KONTAKT / KONTAKT / KONTAKT / KONTAKT</span>
+    </div>
+  </div>
+
+  <!-- Footer sektion med billeder og tekst -->
+  <footer id="footer" class="footer">
+
+<div>
+  <h2>Skal vi ta' en snak - eller vil du kigge videre på SoMe?</h2>
+</div>
+
+<div class="footer-images">
+  <div class="footer-col">
+    <a href="https://www.linkedin.com/in/jonashartmannalbjerg/" target="_blank" rel="noopener noreferrer">
+      <img src="images/kontakt/linkedin.svg" alt="LinkedIn">
+      <span class="tooltip-text">LinkedIn</span>
+    </a>
+  </div>
+  <div class="footer-col">
+    <a href="mailto:jonashalbjerg@gmail.com" target="_blank" rel="noopener noreferrer">
+      <img src="images/kontakt/mail.svg" alt="mail">
+      <span class="tooltip-text">Send en mail</span>
+    </a>
+  </div>
+  <div class="footer-col">
+    <a href="tel:+4553632036" target="_blank" rel="noopener noreferrer">
+      <img src="images/kontakt/telefon.svg" alt="telefon">
+      <span class="tooltip-text">Ring til mig</span>
+    </a>
+  </div>
+  <div class="footer-col">
+    <a href="https://www.tiktok.com/@cowboyderjones" target="_blank" rel="noopener noreferrer">
+      <img src="images/kontakt/tiktok.svg" alt="TikTok">
+      <span class="tooltip-text">TikTok</span>
+    </a>
+  </div>
+
+</div>
+
+  <div class="footer-text">
+    <p>&copy; 2025 - Julie Schrøder.</p>
+    <div><img src="images/logoer/logo.svg" alt="logo"></div>
+  </div>
+</footer>
+
+
+
+
+
+
+  <!-- JavaScript: burger-menu, modalvinduer og accordion -->
+  <script>
+    // Burger-menu logik
+
+  const burgerMenu = document.getElementById('burger-menu');
+  const navLinks = document.getElementById('nav-links');
+  const navItems = navLinks.querySelectorAll('a');
+
+  function toggleMenu() {
+    burgerMenu.classList.toggle('active');
+    navLinks.classList.toggle('active');
+    document.body.classList.toggle('menu-open');
+  }
+
+  burgerMenu.addEventListener('click', toggleMenu);
+
+  // Close menu when clicking any link
+  navItems.forEach(link => {
+    link.addEventListener('click', () => {
+      burgerMenu.classList.remove('active');
+      navLinks.classList.remove('active');
+      document.body.classList.remove('menu-open');
+    });
+  });
+
+
+
+// Modal logik for projekter
+const projectItems = document.querySelectorAll('.project-item');
+projectItems.forEach(item => {
+  item.addEventListener('click', () => {
+    const modalId = item.getAttribute('data-modal');
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.style.display = 'block';
+    }
+  });
+});
+
+// Funktion til at lukke modal + stoppe video/lyd
+function closeModal(modal) {
+  modal.style.display = 'none';
+
+  // Find alle video og audio tags i modal og stop dem
+  const mediaElements = modal.querySelectorAll('video, audio');
+  mediaElements.forEach(media => {
+    media.pause();
+    media.currentTime = 0; // nulstil afspilningen
+  });
+}
+
+// Luk modal ved klik på baggrund eller close
+const modals = document.querySelectorAll('.modal');
+modals.forEach(modal => {
+  modal.addEventListener('click', (event) => {
+    if (event.target.classList.contains('modal') || event.target.classList.contains('close')) {
+      closeModal(modal);
+    }
+  });
+});
+
+// Luk modal med Escape (global lytter)
+document.addEventListener("keyup", function (event) {
+  if (event.key === "Escape" || event.key === "Esc") {
+    event.preventDefault();
+    modals.forEach(modal => {
+      if (modal.style.display === 'block') {
+        closeModal(modal);
+      }
+    });
+  }
+});
+
+// Ekstra failsafe: tilføj keyup-lytter på alle video- og audio-elementer
+const mediaElements = document.querySelectorAll('video, audio');
+mediaElements.forEach(media => {
+  media.addEventListener('keyup', function (event) {
+    if (event.key === "Escape" || event.key === "Esc") {
+      event.preventDefault();
+      // Find nærmeste modal som indeholder dette media
+      const modal = media.closest('.modal');
+      if (modal && modal.style.display === 'block') {
+        closeModal(modal);
+      }
+    }
+  });
+});
+
+  </script>
+</body>
+</html>
